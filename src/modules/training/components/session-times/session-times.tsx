@@ -23,14 +23,16 @@ export function SessionTimesBadge({
   const duration = formatDuration(startIso, finishIso)
   const dateLabel = startIso ? isoToDateInput(startIso).slice(5).replace('-', '.') : null
 
-  const iconClass = open ? 'text-white' : mutedTextClass
+  const iconClass = open ? 'text-ui-fg-on-color' : mutedTextClass
 
   return (
     <Button
       variant="secondary"
       className={joinClasses(
         'rounded-full px-2.5 text-xs font-normal',
-        open ? 'border-ui-border-interactive bg-ui-bg-interactive text-white' : 'bg-ui-bg-subtle text-ui-fg-base',
+        open
+          ? 'border-ui-border-interactive bg-ui-bg-interactive text-ui-fg-on-color'
+          : 'bg-ui-bg-subtle text-ui-fg-base',
       )}
       onClick={onOpen}
     >

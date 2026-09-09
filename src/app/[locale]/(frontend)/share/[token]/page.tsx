@@ -6,6 +6,7 @@ import { loadShareLink } from '@/modules/sharing/server'
 import { WorkoutPlans } from '@/modules/training/components/workout-plans'
 import { PageContainer } from '@/components/ui/page-container'
 import { PageHeader } from '@/components/ui/page-header'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default async function SharePage({
   params,
@@ -32,7 +33,10 @@ export default async function SharePage({
         layout="stacked"
         title={data.meta.planTitle}
         right={
-          <span className="shrink-0 text-xs text-ui-fg-muted">{t('expiresOn', { date: expiryDate })}</span>
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="text-xs text-ui-fg-muted">{t('expiresOn', { date: expiryDate })}</span>
+            <ThemeToggle />
+          </div>
         }
       />
 

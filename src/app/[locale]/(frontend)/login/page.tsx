@@ -9,6 +9,7 @@ import { Field } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Logo } from '@/components/ui/logo'
 import { Surface } from '@/components/ui/surface'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default function LoginPage() {
   const t = useTranslations('login')
@@ -33,7 +34,7 @@ export default function LoginPage() {
         setError(data?.errors?.[0]?.message || t('invalidCredentials'))
         return
       }
-      // cookie payload-token ustawione przez Payload — przechodzimy do dashboardu
+      // Payload sets the payload-token cookie for us, so we can go straight to the dashboard.
       router.push('/')
       router.refresh()
     } catch {
@@ -44,7 +45,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-5 py-6">
+    <div className="relative flex min-h-screen items-center justify-center px-5 py-6">
+      <ThemeToggle className="absolute top-5 right-5 sm:top-6 sm:right-6" />
       <Surface as="form" className="w-full max-w-sm p-6 sm:p-8" onSubmit={onSubmit}>
         <div className="mb-6 flex justify-center">
           <Logo className="h-24 w-auto" />

@@ -4,8 +4,16 @@ import React from 'react'
 import './styles.css'
 
 export const viewport = {
-  colorScheme: 'dark',
+  colorScheme: 'light dark',
 }
+
+/**
+ * Applies the saved theme before the first paint, so the page never flashes the
+ * wrong palette. It runs synchronously as the very first thing in <body>, ahead
+ * of any rendered markup. Falls back to the operating-system preference when the
+ * visitor has not chosen a theme yet.
+ */
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})();`
 
 export const metadata = {
   description: 'Training application',
@@ -45,8 +53,11 @@ export default async function RootLayout(props: {
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className="dark">
+    // suppressHydrationWarning: the script below adds the `dark` class to <html>
+    // before React hydrates, so the client markup deliberately differs here.
+    <html lang={locale} suppressHydrationWarning>
       <body className="bg-ui-bg-base text-ui-fg-base">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <NextIntlClientProvider messages={messages}>
           <main>{props.children}</main>
         </NextIntlClientProvider>

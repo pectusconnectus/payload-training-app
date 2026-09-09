@@ -47,7 +47,8 @@
     "genericError": "Something went wrong. Please try again."
   },
   "nav": {
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "toggleTheme": "Switch between light and dark mode"
   },
   "workout": {
     "activeContext": "Active context"

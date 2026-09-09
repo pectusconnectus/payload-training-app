@@ -6,12 +6,12 @@ export const panelClass = 'rounded-xl border border-ui-border-base bg-ui-bg-subt
 export const mutedTextClass = 'text-ui-fg-muted'
 export const sectionLabelClass = 'text-xs uppercase tracking-wider text-ui-fg-muted'
 export const inputClass =
-  'rounded-lg border border-ui-border-base bg-ui-bg-base px-3 py-[7px] text-base text-ui-fg-base outline-none transition placeholder:opacity-40 focus-visible:border-ui-border-interactive focus-visible:ring-2 focus-visible:ring-ui-border-interactive/20'
+  'rounded-lg border border-ui-border-base bg-ui-bg-field px-3 py-[7px] text-base text-ui-fg-base outline-none transition placeholder:opacity-40 focus-visible:border-ui-border-interactive focus-visible:ring-2 focus-visible:ring-ui-border-interactive/20'
 export const compactInputClass = joinClasses('w-20 px-2.5 py-1.5 sm:py-2', inputClass)
 export const compactUnitInputClass = joinClasses('w-16 px-2.5 py-1.5 sm:py-2', inputClass)
 export const selectClass = joinClasses('px-2 py-1.5 sm:py-2', inputClass)
 export const primaryButtonClass =
-  'appearance-none flex w-fit cursor-pointer items-center justify-center rounded-lg bg-ui-bg-interactive px-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60'
+  'appearance-none flex w-fit cursor-pointer items-center justify-center rounded-lg bg-ui-bg-interactive px-3 text-sm font-semibold text-ui-fg-on-color transition-colors hover:bg-ui-bg-interactive-hover disabled:cursor-not-allowed disabled:opacity-60'
 export const secondaryButtonClass =
   'appearance-none flex w-fit cursor-pointer items-center justify-center rounded-lg border border-ui-border-base px-2.5 text-sm font-medium text-ui-fg-muted transition hover:border-ui-border-strong hover:text-ui-fg-base focus-visible:border-ui-border-interactive focus-visible:ring-2 focus-visible:ring-ui-border-interactive/20 disabled:cursor-not-allowed disabled:opacity-60'
 export const dashedButtonClass =
