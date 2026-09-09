@@ -28,7 +28,7 @@ async function fetchAll<T>(
 async function run() {
   const payload = await getPayload({ config })
 
-  payload.logger.info('Eksportowanie danych...')
+  payload.logger.info('Exporting data...')
 
   const exercises = await fetchAll(payload, 'exercises')
   payload.logger.info(`  exercises: ${exercises.length}`)

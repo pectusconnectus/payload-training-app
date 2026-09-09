@@ -10,6 +10,7 @@
   },
   "exercise": {
     "video": "▶ video",
+    "hideVideo": "▲ hide video",
     "addSet": "add set",
     "duplicateSet": "Duplicate last set",
     "addNote": "note",

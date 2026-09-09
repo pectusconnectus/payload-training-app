@@ -33,14 +33,14 @@ function pick(obj: Record<string, unknown>, keys: string[]): any {
 async function run() {
   if (!fs.existsSync(INPUT)) {
     console.error(`Missing seed-data.json file: ${INPUT}`)
-    console.error('Najpierw uruchom: yarn seed:export')
+    console.error('Run `yarn seed:export` first.')
     process.exit(1)
   }
 
   const payload = await getPayload({ config })
   const data: SeedData = JSON.parse(fs.readFileSync(INPUT, 'utf-8'))
 
-  payload.logger.info(`Seed z eksportu z dnia ${data.exportedAt}`)
+  payload.logger.info(`Seeding from the export made on ${data.exportedAt}`)
 
   // ─── exercises ─────────────────────────────────────────────────────────────
   const exerciseIdMap = new Map<string | number, string | number>()
