@@ -28,5 +28,7 @@ COPY --from=builder /app/.yarnrc.yml ./.yarnrc.yml
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/next.config.ts ./next.config.ts
 COPY --from=builder /app/src ./src
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3000
 EXPOSE 3000
 CMD ["sh", "-c", "yarn payload migrate && yarn start"]
