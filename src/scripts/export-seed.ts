@@ -61,7 +61,7 @@ async function run() {
   fs.mkdirSync(path.dirname(OUTPUT), { recursive: true })
   fs.writeFileSync(OUTPUT, JSON.stringify(seedData, null, 2), 'utf-8')
 
-  payload.logger.info(`\nEksport zakończony → ${OUTPUT}`)
+  payload.logger.info(`\nExport finished → ${OUTPUT}`)
   process.exit(0)
 }
 

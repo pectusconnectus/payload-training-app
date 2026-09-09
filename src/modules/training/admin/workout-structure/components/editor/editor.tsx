@@ -174,7 +174,7 @@ export function WorkoutStructureEditor({
                               setEditingExercise(row.id)
                             }}
                           >
-                            Edytuj
+                            Edit
                           </Button>
                           {!exerciseRowsWithLogs.has(row.id) && (
                             <Button

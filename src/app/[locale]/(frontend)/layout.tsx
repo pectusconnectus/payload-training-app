@@ -8,8 +8,8 @@ export const viewport = {
 }
 
 export const metadata = {
-  description: 'Aplikacja treningowa',
-  title: 'Trening',
+  description: 'Training application',
+  title: 'Training',
   robots: {
     index: false,
     follow: false,

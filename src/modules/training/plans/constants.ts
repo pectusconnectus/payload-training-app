@@ -1,9 +1,9 @@
 import type { WorkoutProtocol } from './types'
 
 export const STATUS_LABEL: Record<string, string> = {
-  active: 'Aktywny',
-  paused: 'Wstrzymany',
-  completed: 'Zakończony',
+  active: 'Active',
+  paused: 'Paused',
+  completed: 'Completed',
 }
 
 export const PROTOCOL_LABEL: Record<WorkoutProtocol, string> = {

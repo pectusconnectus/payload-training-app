@@ -96,7 +96,7 @@ export function SessionTimesForm({
   return (
     <div className="mt-2 font-normal">
       <div className="flex flex-col gap-2.5">
-        <Field label="Rozpoczęto" className="sm:flex-row sm:flex-wrap sm:items-center sm:gap-1.5 text-sm">
+        <Field label="Started" className="sm:flex-row sm:flex-wrap sm:items-center sm:gap-1.5 text-sm">
           <div className="flex items-center gap-1.5">
             <Input
               type="date"
@@ -113,12 +113,12 @@ export function SessionTimesForm({
               onBlur={() => onSet('startedAt', combineDateTime(startDate, startTime))}
             />
             <Button variant="secondary" onClick={setStartNow}>
-              teraz
+              now
             </Button>
           </div>
         </Field>
 
-        <Field label="Zakończono" className="sm:flex-row sm:flex-wrap sm:items-center sm:gap-1.5 text-sm">
+        <Field label="Finished" className="sm:flex-row sm:flex-wrap sm:items-center sm:gap-1.5 text-sm">
           <div className="flex flex-wrap items-center gap-1.5">
             <Input
               type="time"
@@ -136,7 +136,7 @@ export function SessionTimesForm({
 
         <div className="flex flex-wrap items-center gap-1.5">
           <Button size="sm" onClick={save} disabled={saving}>
-            {saving ? '…' : 'Zapisz'}
+            {saving ? '…' : 'Save'}
           </Button>
         </div>
       </div>

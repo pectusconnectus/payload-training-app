@@ -75,7 +75,7 @@ export function useWorkoutSession(
       })
       .catch((loadError) => {
         if (!active) return
-        setError(loadError instanceof Error ? loadError.message : 'Błąd ładowania sesji')
+        setError(loadError instanceof Error ? loadError.message : 'Could not load the session')
         setLoadedWorkoutId(workout.id)
       })
 
@@ -123,7 +123,7 @@ export function useWorkoutSession(
       const s = await ensureSession()
       const doc = await sdk.update({ collection: 'workout-logs', id: s.id, data: { [field]: iso } })
       setSession(doc)
-    }, 'Błąd zapisu czasu')
+    }, 'Could not save the time')
 
   const saveTimes = (startedAt: string | null, finishedAt: string | null) =>
     runMutation(async () => {
@@ -134,7 +134,7 @@ export function useWorkoutSession(
         data: { startedAt, finishedAt },
       })
       setSession(doc)
-    }, 'Błąd zapisu czasu')
+    }, 'Could not save the time')
 
   const addSet = (
     exercise: WorkoutExerciseTree,
@@ -158,7 +158,7 @@ export function useWorkoutSession(
         },
       })
       setSets((prev) => [...prev, doc])
-    }, 'Błąd zapisu serii')
+    }, 'Could not save the set')
 
   const updateSet = (id: number, fields: MetricField[], values: MetricFormValues) =>
     runMutation(async () => {
@@ -171,13 +171,13 @@ export function useWorkoutSession(
       setSets((prev) =>
         prev.map((set) => (set.id === id ? doc : set)),
       )
-    }, 'Błąd aktualizacji serii')
+    }, 'Could not update the set')
 
   const deleteSet = (id: number) =>
     runMutation(async () => {
       await sdk.delete({ collection: 'set-logs', id })
       setSets((prev) => prev.filter((set) => set.id !== id))
-    }, 'Błąd usunięcia serii')
+    }, 'Could not delete the set')
 
   const saveSessionNote = (note: string) =>
     runMutation(async () => {
@@ -189,7 +189,7 @@ export function useWorkoutSession(
         data: { notes: note.trim() },
       })
       setSession(doc)
-    }, 'Błąd zapisu notatki')
+    }, 'Could not save the note')
 
   const saveExerciseNote = (exercise: WorkoutExerciseTree, note: string) =>
     runMutation(async () => {
@@ -223,7 +223,7 @@ export function useWorkoutSession(
       setExerciseNotes((prev) =>
         existing ? prev.map((entry) => (entry.id === doc.id ? doc : entry)) : [...prev, doc],
       )
-    }, 'Błąd zapisu notatki')
+    }, 'Could not save the note')
 
   return {
     session: displayedSession,

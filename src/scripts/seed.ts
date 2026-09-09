@@ -1,9 +1,9 @@
 /**
- * Importuje dane testowe z seed-data.json do czystej bazy.
- * Kolejność: exercises → plans → microcycles → workouts → workout-groups → workout-exercise-rows
+ * Imports sample data from seed-data.json into a clean database.
+ * Order: exercises → plans → microcycles → workouts → workout-groups → workout-exercise-rows
  *
- * Bezpieczne do wielokrotnego uruchomienia na pustej bazie.
- * Na niepustej bazie: duplikuje dane — uruchamiać tylko na świeżej instalacji.
+ * Safe to run repeatedly against an empty database.
+ * On a non-empty database it duplicates data — run it only on a fresh install.
  */
 import 'dotenv/config'
 import fs from 'fs'
@@ -32,7 +32,7 @@ function pick(obj: Record<string, unknown>, keys: string[]): any {
 
 async function run() {
   if (!fs.existsSync(INPUT)) {
-    console.error(`Brak pliku seed-data.json: ${INPUT}`)
+    console.error(`Missing seed-data.json file: ${INPUT}`)
     console.error('Najpierw uruchom: yarn seed:export')
     process.exit(1)
   }
@@ -72,7 +72,7 @@ async function run() {
   for (const mc of data.microcycles) {
     const newPlanId = planIdMap.get(mc.plan as string | number)
     if (!newPlanId) {
-      payload.logger.warn(`Pominięto mikrocykl ${mc.id} — brak planu ${mc.plan}`)
+      payload.logger.warn(`Skipped microcycle ${mc.id} — missing plan ${mc.plan}`)
       continue
     }
     const created = await payload.create({
@@ -92,7 +92,7 @@ async function run() {
   for (const wo of data.workouts) {
     const newMicrocycleId = microcycleIdMap.get(wo.microcycle as string | number)
     if (!newMicrocycleId) {
-      payload.logger.warn(`Pominięto trening ${wo.id} — brak mikrocyklu ${wo.microcycle}`)
+      payload.logger.warn(`Skipped workout ${wo.id} — missing microcycle ${wo.microcycle}`)
       continue
     }
     const created = await payload.create({
@@ -107,8 +107,8 @@ async function run() {
   payload.logger.info(`  workouts: ${workoutIdMap.size}`)
 
   // ─── workout-groups ────────────────────────────────────────────────────────
-  // Sekcje w workoutach dostają nowe row-id po zapisie — musimy je zmapować.
-  // Strategia: mapujemy po kolejności sectionRowId w ramach danego workout.
+  // Sections get new row-ids once the workout is saved, so they have to be remapped.
+  // Strategy: map sectionRowIds by their order within each workout.
   const sectionRowIdMap = new Map<string, string>()
 
   for (const wo of data.workouts) {
@@ -135,7 +135,7 @@ async function run() {
   for (const wg of data.workoutGroups) {
     const newWorkoutId = workoutIdMap.get(wg.workout as string | number)
     if (!newWorkoutId) {
-      payload.logger.warn(`Pominięto grupę ${wg.id} — brak treningu ${wg.workout}`)
+      payload.logger.warn(`Skipped group ${wg.id} — missing workout ${wg.workout}`)
       continue
     }
     const oldSectionRowId = wg.sectionRowId as string | undefined
@@ -163,7 +163,7 @@ async function run() {
   for (const row of data.workoutExerciseRows) {
     const newGroupId = groupIdMap.get(row.group as string | number)
     if (!newGroupId) {
-      payload.logger.warn(`Pominięto wiersz ${row.id} — brak grupy ${row.group}`)
+      payload.logger.warn(`Skipped row ${row.id} — missing group ${row.group}`)
       continue
     }
     const oldExerciseId = row.exercise as string | number | null | undefined
@@ -187,7 +187,7 @@ async function run() {
   }
   payload.logger.info(`  workout-exercise-rows: ${rowCount}`)
 
-  payload.logger.info('\nSeed zakończony pomyślnie.')
+  payload.logger.info('\nSeed completed successfully.')
   process.exit(0)
 }
 

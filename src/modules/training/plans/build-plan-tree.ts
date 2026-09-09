@@ -121,7 +121,7 @@ export const buildPlanTree = (
       dateRange:
         plan.startDate || plan.endDate
           ? [plan.startDate, plan.endDate]
-              .map((date) => (date ? new Date(date).toLocaleDateString('pl-PL') : '...'))
+              .map((date) => (date ? new Date(date).toLocaleDateString('en-GB') : '...'))
               .join(' - ')
           : null,
       microcycles: (microcyclesByPlan.get(plan.id) ?? []).map((microcycle) => ({

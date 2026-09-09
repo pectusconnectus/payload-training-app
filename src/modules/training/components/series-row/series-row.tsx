@@ -47,14 +47,14 @@ export function SeriesRow({
   return (
     <li className="mb-1 flex items-center justify-between gap-2 rounded-lg border border-ui-border-base bg-ui-bg-base px-2.5 py-1.5 text-sm">
       <span>
-        Seria {set.setNumber}: {formatSetLogSummary(set)}
+        Set {set.setNumber}: {formatSetLogSummary(set)}
       </span>
       {!readOnly && (
         <span className="flex shrink-0 gap-0.5">
-          <Button variant="icon" onClick={() => setEditing(true)} aria-label="Edytuj">
+          <Button variant="icon" onClick={() => setEditing(true)} aria-label="Edit">
             <Pencil size={14} />
           </Button>
-          <Button variant="danger" onClick={onDelete} aria-label="Usuń">
+          <Button variant="danger" onClick={onDelete} aria-label="Delete">
             <Trash2 size={14} />
           </Button>
         </span>
